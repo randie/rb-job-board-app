@@ -1,3 +1,5 @@
+const fs = require('fs');
+const { ApolloServer, gql } = require('apollo-server-express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const express = require('express');
@@ -18,6 +20,12 @@ app.use(
   })
 );
 
+// setup up apollo server
+const typeDefs = gql(fs.readFileSync('./schema.graphql', { encoding: 'utf8' }));
+const resolvers = require('./resolvers');
+const apolloServer = new ApolloServer({ typeDefs, resolvers });
+apolloServer.applyMiddleware({ app, path: '/graphql' });
+
 app.post('/login', (req, res) => {
   const { email, password } = req.body;
   const user = db.users.list().find(user => user.email === email);
@@ -29,4 +37,4 @@ app.post('/login', (req, res) => {
   res.send({ token });
 });
 
-app.listen(port, () => console.info(`Server listening on port ${port}`));
+app.listen(port, () => console.info(`server is listening on http://localhost:${port}/graphql`));
