@@ -3,7 +3,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "start": "nodemon --ignore data/ server.js"
+    "start": "nodemon --ignore data/ server.js --exec babel-node"
   },
   "dependencies": {
     "apollo-server-express": "^2.9.16",
@@ -16,6 +16,8 @@
     "notarealdb": "0.2.2"
   },
   "devDependencies": {
-    "nodemon": "1.19.3"
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "nodemon": "^1.19.3"
   }
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { JobList } from './job-list';
-const { jobs } = require('./fake-data');
+import { jobs } from './fake-data';
 
 export class JobBoard extends Component {
   render() {
