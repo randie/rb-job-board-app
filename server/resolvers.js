@@ -1,7 +1,11 @@
-import { jobs } from './db';
+import { companies, jobs } from './db';
 
 const Query = {
   jobs: () => jobs.list(),
 };
 
-export default { Query };
+const Job = {
+  company: job => companies.get(job.companyId), // where job is the parent node
+};
+
+export default { Query, Job };
