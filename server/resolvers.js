@@ -1,5 +1,7 @@
+import { jobs } from './db';
+
 const Query = {
-  greeting: () => 'Hello GraphQL!',
+  jobs: () => jobs.list(),
 };
 
-module.exports = { Query };
+export default { Query };
