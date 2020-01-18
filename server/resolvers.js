@@ -1,6 +1,7 @@
 import { companies, jobs } from './db';
 
 const Query = {
+  company: (root, { id }) => companies.get(id),
   job: (root, { id }) => jobs.get(id),
   jobs: () => jobs.list(),
 };
