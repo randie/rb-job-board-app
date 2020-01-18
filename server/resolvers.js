@@ -6,8 +6,12 @@ const Query = {
   jobs: () => jobs.list(),
 };
 
+const Company = {
+  jobs: company => jobs.list().filter(job => job.companyId === company.id), // where company is the parent node in the graph
+};
+
 const Job = {
   company: job => companies.get(job.companyId), // where job is the parent node in the graph
 };
 
-export default { Query, Job };
+export default { Query, Company, Job };
