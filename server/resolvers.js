@@ -5,7 +5,7 @@ const Query = {
 };
 
 const Job = {
-  company: job => companies.get(job.companyId), // where job is the parent node
+  company: job => companies.get(job.companyId), // where job is the parent node in the graph
 };
 
 export default { Query, Job };
