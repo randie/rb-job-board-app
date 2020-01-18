@@ -49,3 +49,17 @@ export async function fetchJob(id) {
   const { job } = await graphqlRequest(query, { id });
   return job;
 }
+
+export async function fetchCompany(id) {
+  const query = `
+    query CompanyQuery($id: ID!){
+      company(id: $id) {
+        id
+        name
+        description
+      }
+    }
+  `;
+  const { company } = await graphqlRequest(query, { id });
+  return company;
+}
