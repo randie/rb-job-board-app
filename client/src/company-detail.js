@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { fetchCompany } from './requests';
+import { fetchCompany } from './graphql-requests';
 import { JobList } from './job-list';
 
 export class CompanyDetail extends Component {

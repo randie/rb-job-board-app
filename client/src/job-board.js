@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { JobList } from './job-list';
-import { fetchJobs } from './requests';
+import { fetchJobs } from './graphql-requests';
 
 export class JobBoard extends Component {
   constructor(props) {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { fetchJob } from './requests';
+import { fetchJob } from './graphql-requests';
 
 export class JobDetail extends Component {
   constructor(props) {
