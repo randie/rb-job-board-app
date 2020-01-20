@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { JobList } from './job-list';
-import { fetchJobs } from './graphql-requests';
+import { fetchJobs } from './apollo-requests';
 
 export class JobBoard extends Component {
   constructor(props) {
