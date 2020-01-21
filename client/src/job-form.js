@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { createJob } from './graphql-requests';
+import { createJob } from './apollo-requests';
 
 export class JobForm extends Component {
   constructor(props) {

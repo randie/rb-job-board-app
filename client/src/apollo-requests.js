@@ -1,11 +1,21 @@
-import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost';
+import { ApolloClient, ApolloLink, HttpLink, InMemoryCache } from 'apollo-boost';
 import gql from 'graphql-tag';
 import { getAccessToken, isLoggedIn } from './auth';
 
 const endpointUrl = 'http://localhost:9000/graphql';
 
+const httpLink = new HttpLink({ uri: endpointUrl });
+const authLink = new ApolloLink((operation, forward) => {
+  if (isLoggedIn()) {
+    operation.setContext({
+      headers: { authorization: `Bearer ${getAccessToken()}` },
+    });
+  }
+  return forward(operation);
+});
+
 const client = new ApolloClient({
-  link: new HttpLink({ uri: endpointUrl }),
+  link: ApolloLink.from([authLink, httpLink]),
   cache: new InMemoryCache(),
 });
 
@@ -22,7 +32,7 @@ export async function fetchJobs() {
       }
     }
   `;
-  const { data } = await client.query({ query });
+  const { data } = await client.query({ query, fetchPolicy: 'no-cache' });
   return data.jobs;
 }
 
@@ -58,7 +68,7 @@ export async function fetchCompany(id) {
       }
     }
   `;
-  const { data } = await client.query({ query, variables: { id } });
+  const { data } = await client.query({ query, variables: { id }, fetchPolicy: 'no-cache' });
   return data.company;
 }
 
